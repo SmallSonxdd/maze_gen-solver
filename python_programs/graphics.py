@@ -70,3 +70,13 @@ class Cell:
             print(f'Cell {self} has top wall biatch')
             line = Line(Point(self._x2, self._y1), Point(self._x1, self._y1))
             self._win.draw_line(line)
+
+    def draw_move(self, to_cell, undo=False):
+        if undo is False:
+            color = 'red'
+        else:
+            color = 'gray'
+        center_from = Point((self._x1 + self._x2)/2, (self._y1 + self._y2)//2)
+        center_to = Point((to_cell._x1 + to_cell._x2)/2, (to_cell._y1 + to_cell._y2)//2)
+        line = Line(center_from, center_to)
+        self._win.draw_line(line, fill_color=color)
