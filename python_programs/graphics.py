@@ -22,7 +22,7 @@ class Window:
     def close(self):
         self.running = False
 
-    def draw_line(self, line, fill_color='purple'):
+    def draw_line(self, line, fill_color='black'):
         line.draw(self.__canvas, fill_color)
 
 class Point:
@@ -38,6 +38,35 @@ class Line:
         self.point1 = point1
         self.point2 = point2
     
-    def draw(self, canvas, fill_color='purple'):
+    def draw(self, canvas, fill_color='black'):
         canvas.create_line(self.point1.x, self.point1.y, self.point2.x, self.point2.y, fill=fill_color, width=2)
 
+class Cell:
+    def __init__(self, top_left, bottom_right, window):
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        self._x1 = top_left.x
+        self._x2 = bottom_right.x
+        self._y1 = top_left.y
+        self._y2 = bottom_right.y
+        self._win = window
+
+    def draw(self):
+        if self.has_left_wall:
+            print(f'Cell {self} has left wall biatch')
+            line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
+            self._win.draw_line(line)
+        if self.has_bottom_wall:
+            print(f'Cell {self} has bottom wall biatch')
+            line = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
+            self._win.draw_line(line)
+        if self.has_right_wall:
+            print(f'Cell {self} has right wall biatch')
+            line = Line(Point(self._x2, self._y2), Point(self._x2, self._y1))
+            self._win.draw_line(line)
+        if self.has_top_wall:
+            print(f'Cell {self} has top wall biatch')
+            line = Line(Point(self._x2, self._y1), Point(self._x1, self._y1))
+            self._win.draw_line(line)
