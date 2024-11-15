@@ -55,18 +55,20 @@ class Cell:
         self._win = window
 
     def draw(self):
-        if self._win is None:
-            return
         if self.has_left_wall:
+            print(f'Cell {self} has left wall biatch')
             line = Line(Point(self._x1, self._y1), Point(self._x1, self._y2))
             self._win.draw_line(line)
         if self.has_bottom_wall:
+            print(f'Cell {self} has bottom wall biatch')
             line = Line(Point(self._x1, self._y2), Point(self._x2, self._y2))
             self._win.draw_line(line)
         if self.has_right_wall:
+            print(f'Cell {self} has right wall biatch')
             line = Line(Point(self._x2, self._y2), Point(self._x2, self._y1))
             self._win.draw_line(line)
         if self.has_top_wall:
+            print(f'Cell {self} has top wall biatch')
             line = Line(Point(self._x2, self._y1), Point(self._x1, self._y1))
             self._win.draw_line(line)
 
@@ -113,8 +115,6 @@ class Maze:
                 self._draw_cell(row, column)
     
     def _draw_cell(self, i, j):
-        if self.win is None:
-            return
         cell = self._cells[j][i]
         cell.draw()
         self._animate()
