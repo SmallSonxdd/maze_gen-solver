@@ -1,16 +1,11 @@
-from graphics import Window, Point, Line, Cell
+from graphics import *
 
 def main():
     win = Window(800, 600)
-    cell_one = Cell(Point(40, 40), Point(80, 80), win)
-    cell_one.draw()
-    cell_two = Cell(Point(400, 40), Point(440, 160), win)
-    cell_two.draw()
-    cell_one.draw_move(cell_two, undo=False)
-    cell_three = Cell(Point(200,200), Point(500, 500), win)
-    cell_three.draw()
-    cell_two.draw_move(cell_three)
-    cell_three.draw_move(cell_one, undo='gibigaba')
+    num_cols = 12
+    num_rows = 10
+    m1 = Maze(0, 0, num_rows, num_cols, 10, 10, win) 
+    m1.solve()
     win.wait_for_close()
 
 main()
